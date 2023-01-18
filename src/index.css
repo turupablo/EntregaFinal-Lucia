@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.texto-card {
+  font-weight: bold;
+
+
+}
+
+.carta-contenedor {
+  align-items: center;
+  justify-content: center;
+  height: 15rem;
+  width: 10rem;
+}
+
+.nav-intensidad:hoover{
+  font-weight: bold;
+}
