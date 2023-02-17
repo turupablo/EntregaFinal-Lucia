@@ -21,10 +21,14 @@ code {
 .carta-contenedor {
   align-items: center;
   justify-content: center;
-  height: 15rem;
-  width: 10rem;
+  height: 30rem;
+  width: 20rem;
 }
 
 .nav-intensidad:hoover{
+  font-weight: bold;
+}
+
+.precio {
   font-weight: bold;
 }

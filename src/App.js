@@ -1,15 +1,21 @@
 import React from 'react';
+import CarritoProvider from "./components/CarritoProvider"
+import { BrowserRouter } from "react-router-dom"
 import './App.css';
-import ItemListContainer from './components/ItemListContainer';
-import NavBar from './components/NavBar'; 
+
+import Header from './components/Header'; 
+import Main from './components/Main'; 
 
 
 const App = () => {
   return (
     <>
-
-          <NavBar />
-          <ItemListContainer greeting="Proximamente tus productos favoritos" />
+      <CarritoProvider>
+        <BrowserRouter>
+            <Header />
+            <Main />
+        </BrowserRouter>
+      </CarritoProvider>
     </>
   )
 }
