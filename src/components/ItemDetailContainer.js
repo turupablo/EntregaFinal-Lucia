@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { collection, getDocs, query, where  } from "firebase/firestore"
+import { collection, getDoc, doc } from "firebase/firestore"
 import { db } from "../firebase"
 import ItemDetail from "./ItemDetail"
 import { toast } from "react-toastify"
@@ -8,30 +8,38 @@ import { toast } from "react-toastify"
 const ItemDetailContainer = () => {
 
     const [load, setLoad] = useState(false)
-    const [productos,setProductos] = useState([])
-    const props = useParams()
+    const [producto,setProducto] = useState({})
+    const { id } = useParams()
 
     useEffect(() => {
         toast.info("Cargando producto...")
         setLoad(false)
-        const pedidoFirestore = getDocs(collection(db, 'productos'))
 
-        pedidoFirestore
+
+
+       const productosCollection = collection(db, "productos")
+       const referencia = doc(productosCollection, id)
+       const pedido = getDoc(referencia)
+
+   
+        pedido
             .then((respuesta) => {
-                const productos = respuesta.docs.map(doc => ({ ...doc.data(), id: doc.id }))
-                setProductos(productos)
-                setLoad(true)
+                const producto = respuesta.data()
+                setProducto(producto)
                 toast.dismiss()
-                toast.success("Productos cargados!")
+                toast.success("Producto cargado!")
+                setLoad(true)
             })
-             .catch((error) => {
-                   console.log(error)
+            .catch((error) => {
+                console.log(error)
+                toast.dismiss()
+                toast.error("Hubo un error, vuelva a intentarlo!")
             })
-    }, [props.categoria])
+    },[])
 
     return (
         <>
-            {load ? <ItemDetail productos={productos}/> : <div className="text-center text-warning">Cargando</div>}
+            {load ? <ItemDetail productos={producto}/> : <div className="text-center text-warning">Cargando</div>}
         </>
     )
 }

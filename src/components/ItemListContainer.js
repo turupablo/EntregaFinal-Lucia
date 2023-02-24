@@ -10,30 +10,20 @@ const ItemListContainer = () => {
     const [load, setLoad] = useState(false)
     const [productos,setProductos] = useState([])
 
-    const props = useParams()
+    const {categoria} = useParams()
 
 
     useEffect(() => {
         toast.info("Cargando producto...")
         setLoad(false)
-      //const pedido = fetch("https://fakestoreapi.com/products/")
-      //  const productosCollection = collection(db,"items")
-      //  console.log(productosCollection)
-      //  const pedidoFirestore = getDoc (productosCollection)
+        const colleccionProductos = collection(db, "productos");
+        let filtro = query(colleccionProductos);
+        if (categoria) {
+            filtro = query(colleccionProductos,where("categoria","==",categoria));
+        }
+        const colleccionesRequeridas = getDocs(filtro);
 
-
-        //const productosCollection = collection(db, "items") //CollectionReference/Query
-        //console.log(productos)
-
-        //getDocs(Query)
-        //query(Query,Constraint)
-        //where(propieda,operador,valor)
-
-        //const filtro = query(productosCollection,where("categoria","==","Camisetas"))
-        const pedidoFirestore = getDocs(collection(db, 'productos'))
-
-
-        pedidoFirestore
+        colleccionesRequeridas
             .then((respuesta) => {
                 const productos = respuesta.docs.map(doc => ({ ...doc.data(), id: doc.id }))
                 setProductos(productos)
@@ -41,11 +31,14 @@ const ItemListContainer = () => {
                 toast.dismiss()
                 toast.success("Productos cargados!")
             })
+
+
+
              .catch((error) => {
                    console.log(error)
             })
 
-    }, [props.categoria])
+    }, [categoria])
 
     return (
         <>

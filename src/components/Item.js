@@ -15,7 +15,7 @@ const Item = ({ producto }) => {
                     </div>
                     <p className="text-secondary precio">${producto.precio}</p>
                     <Link to={"/item/"+producto.id}> <button className="btn btn-secondary ">Mas</button> </Link>
-                    <Link to={"/item/"+producto.id}> <button className="btn btn-secondary mt-1"><img src={cart} width="20" height="20" class="d-inline-block align-top" alt=""/> Agregar</button> </Link>
+                    <Link to={"/item/"+producto.id}> <button className="btn btn-secondary mt-1"><img src={cart} width="20" height="20" className="d-inline-block align-top" alt=""/> Agregar</button> </Link>
 
                 </div>
             </div>
