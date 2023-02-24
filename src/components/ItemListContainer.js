@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { collection, getDoc  } from "firebase/firestore"
+import { collection, getDocs, query, where  } from "firebase/firestore"
 import { db } from "../firebase"
 import ItemList from "./ItemList"
+import { toast } from "react-toastify"
 
 const ItemListContainer = () => {
 
@@ -10,33 +11,38 @@ const ItemListContainer = () => {
     const [productos,setProductos] = useState([])
 
     const props = useParams()
-    console.log(props)
 
 
     useEffect(() => {
-
+        toast.info("Cargando producto...")
         setLoad(false)
-        const pedido = fetch("https://fakestoreapi.com/products/")
-        const productosCollection = collection(db,"items")
-        const pedidoFirestore = getDoc (productosCollection)
+      //const pedido = fetch("https://fakestoreapi.com/products/")
+      //  const productosCollection = collection(db,"items")
+      //  console.log(productosCollection)
+      //  const pedidoFirestore = getDoc (productosCollection)
+
+
+        //const productosCollection = collection(db, "items") //CollectionReference/Query
+        //console.log(productos)
+
+        //getDocs(Query)
+        //query(Query,Constraint)
+        //where(propieda,operador,valor)
+
+        //const filtro = query(productosCollection,where("categoria","==","Camisetas"))
+        const pedidoFirestore = getDocs(collection(db, 'productos'))
 
 
         pedidoFirestore
             .then((respuesta) => {
-                const productos = respuesta.docs.map(doc => ({ ...doc.data(), id: doc.id}))
+                const productos = respuesta.docs.map(doc => ({ ...doc.data(), id: doc.id }))
+                setProductos(productos)
+                setLoad(true)
+                toast.dismiss()
+                toast.success("Productos cargados!")
             })
-            .then((productos) => {
-                if (props.categoria == null) {
-                    setProductos(productos)
-                } else {
-                    setProductos(productos.filter(p => p.category === props.categoria))
-                }
-            setLoad(true)
-            console.log(productos)
-
-            })
-            .catch((error) => {
-                console.log(error)
+             .catch((error) => {
+                   console.log(error)
             })
 
     }, [props.categoria])

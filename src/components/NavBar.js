@@ -12,8 +12,8 @@ const NavBar = (props) => {
             <nav className="navbar navbar-light bg-light text-info ">
 
                     <NavLink className="header__link navbar-brand h1 col" to="/"><img src={torre} width="30" height="30" class="d-inline-block align-top" alt=""/> Fortin</NavLink>
-                    <NavLink className="nav-link hover-shadow col" to="/categories/electronics">Camisetas</NavLink>
-                    <NavLink className="nav-link hover-shadow col" to="/categories/jewelery">Merchandising</NavLink>
+                    <NavLink className="nav-link hover-shadow col" to="/categories/Camisetas">Camisetas</NavLink>
+                    <NavLink className="nav-link hover-shadow col" to="/categories/Merchandising">Merchandising</NavLink>
                     <NavLink className="nav-link hover-shadow col" to="/checkout"><CardWidget className="nav-link hover-shadow col" stock="3"/></NavLink>
                     
 

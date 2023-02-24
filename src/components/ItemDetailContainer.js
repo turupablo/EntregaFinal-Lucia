@@ -1,56 +1,37 @@
-import {React, useEffect, useState} from 'react'
-import { collection, getDoc } from "firebase/firestore"
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import { collection, getDocs, query, where  } from "firebase/firestore"
 import { db } from "../firebase"
-import { useParams  } from 'react-router-dom'
-import  ItemDetail  from './ItemDetail'
-
-
-
+import ItemDetail from "./ItemDetail"
+import { toast } from "react-toastify"
 
 const ItemDetailContainer = () => {
-    const params = useParams()
+
     const [load, setLoad] = useState(false)
     const [productos,setProductos] = useState([])
-
+    const props = useParams()
 
     useEffect(() => {
-
-        const url = "https://fakestoreapi.com/products/" + params.id
-        const pedido = fetch(url)
-        const productosCollection = collection(db,"items")
-        const pedidoFirestore = getDoc (productosCollection)
-        console.log(url)
+        toast.info("Cargando producto...")
+        setLoad(false)
+        const pedidoFirestore = getDocs(collection(db, 'productos'))
 
         pedidoFirestore
-            .then(()=>{}
-
-
-
-            )
-            .catch((error) => {
-                console.log(error)
-            })
-
-        pedido
             .then((respuesta) => {
-                const productos = respuesta.json()
-                return productos
-
-            })
-            .then((productos) => {
+                const productos = respuesta.docs.map(doc => ({ ...doc.data(), id: doc.id }))
                 setProductos(productos)
                 setLoad(true)
+                toast.dismiss()
+                toast.success("Productos cargados!")
             })
-            .catch((error) => {
-                console.log(error)
+             .catch((error) => {
+                   console.log(error)
             })
-
-    }, [])
+    }, [props.categoria])
 
     return (
         <>
-            {load ? null : <div className="text-center text-warning">Cargando</div>}
-            <ItemDetail productos={productos}/>
+            {load ? <ItemDetail productos={productos}/> : <div className="text-center text-warning">Cargando</div>}
         </>
     )
 }
