@@ -1,17 +1,23 @@
 import React from 'react'
+import Rate from './Rate'
 
-const ItemDetail = ({ productos }) => {
+
+  const ItemDetail = ({ productos }) => {
   
+  
+  const { titulo, precio, categoria, descripcion, imagen , rating} = productos
 
-  const { titulo, precio, categoria, descripcion, imagen} = productos
 
   return (
-    <div>
-      <h1>{titulo}</h1>
+    <div className='border p-5 container text-center '>
+      <h1 className='product-card__title'>{titulo}</h1>
       <p>{descripcion}</p>
-      <p>{categoria}</p>
-      <p>{precio}</p>
-      <img className="product-card__image img-fluid border-secondary imagen-tarjeta" src={`${imagen}`} alt={titulo} />
+      <img className="imagen-detail" src={`${imagen}`} alt={titulo} />
+      <Rate valoracion={rating.valoracion} contador={rating.contador}></Rate>
+      <p className='text-secondary precio'>${precio}</p>
+
+      <input type="button" onclick="history.back()" name="Atras" value="Atras"></input>
+
 
 
 
