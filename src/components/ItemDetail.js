@@ -1,12 +1,15 @@
 import React from 'react'
+
 import Rate from './Rate'
 
 
   const ItemDetail = ({ productos }) => {
   
   
-  const { titulo, precio, categoria, descripcion, imagen , rating} = productos
-
+  const { titulo, precio, categoria, descripcion, imagen , rating, stock} = productos
+  const handleAtras = () => {
+    window.history.back()
+  }
 
   return (
     <div className='border p-5 container text-center '>
@@ -15,12 +18,8 @@ import Rate from './Rate'
       <img className="imagen-detail" src={`${imagen}`} alt={titulo} />
       <Rate valoracion={rating.valoracion} contador={rating.contador}></Rate>
       <p className='text-secondary precio'>${precio}</p>
-
-      <input type="button" onclick="history.back()" name="Atras" value="Atras"></input>
-
-
-
-
+      <p className='stock-texto'>Stock: {stock}</p>
+      <button className='btn btn-secondary ' onClick={handleAtras}>Atras</button>
     </div>
   )
 }

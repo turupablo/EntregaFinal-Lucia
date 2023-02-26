@@ -27,7 +27,7 @@ const CarritoProvider = ({ children }) => {
         //setCarrito()
     }
 
-    const eliminarProducto = (id) => { }
+    const eliminarProducto = (id) => setCarrito(carrito.filter(producto => producto.id !== id))
 
     //const modifcarCantidad = () => {}
 
@@ -36,16 +36,21 @@ const CarritoProvider = ({ children }) => {
     }
 
     const estaEnCarrito = (id) => {
-        //return true|false
+        return carrito.find(producto => producto.id === id) ? true : false
     }
+
+ 
 
 
     const valorDelContexto = {
-        carrito: carrito,
-        totalProductos: totalProductos,
-        /*  setCarrito : setCarrito , 
-         setTotalProductos : setTotalProductos */
-        agregarProducto: agregarProducto
+        carrito,
+        totalProductos,
+        setCarrito,
+        setTotalProductos,
+        estaEnCarrito,
+        vaciarCarrito,
+        eliminarProducto,
+        agregarProducto
     }
 
     return (
