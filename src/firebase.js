@@ -4,18 +4,17 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { getFirestore } from "firebase/firestore";
 
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBTv6hKrijO-Zl8O4eeoZdZMXZvkT7qA9E",
-  authDomain: "app-coder-fortin.firebaseapp.com",
-  projectId: "app-coder-fortin",
-  storageBucket: "app-coder-fortin.appspot.com",
-  messagingSenderId: "2684312522",
-  appId: "1:2684312522:web:a743d9e17c3d46fb8acd33"
+  apiKey: "AIzaSyAvmhDPcPsEaFq1SN4PqBuUCd9QZlS_P7E",
+  authDomain: "app-camisetas-coder.firebaseapp.com",
+  projectId: "app-camisetas-coder",
+  storageBucket: "app-camisetas-coder.appspot.com",
+  messagingSenderId: "610704901465",
+  appId: "1:610704901465:web:e7d81fff631fb0f046b848"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-export const db = getFirestore(app)
+export const db = getFirestore(app);

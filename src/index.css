@@ -32,3 +32,51 @@ code {
 .precio {
   font-weight: bold;
 }
+
+.imagen-conedor {
+  height: 15rem;
+  width: 10rem;
+  position: relative;
+}
+
+
+.imagen-tarjeta {
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;  
+  bottom: 0;  
+  left: 0;  
+  right: 0;  
+  margin: auto;
+}
+
+.rating-texto {
+  font-size: 10px;
+}
+
+.imagen-detail {
+  width: 60%;
+}
+
+.stock-texto {
+  font-size: 10px;
+}
+
+.boton-count {
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+  border: none;
+  font-size: 21px;
+  color: white;
+  cursor: pointer;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boton-count:hover {
+  opacity: 0.75;
+}
