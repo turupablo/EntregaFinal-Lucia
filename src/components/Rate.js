@@ -20,7 +20,7 @@ const Rate = (props) => {
                 <p className='rating-texto'>Rating: {valoracion}</p>
             </div>
             <div className='col'>
-                <Rating onClick={handleRating} allowHover={false} initialValue={valoracion}/>
+                <Rating onClick={handleRating} size={25} allowFraction={true} readonly={true} allowHover={false} initialValue={valoracion}/>
             </div>
 
         </div>

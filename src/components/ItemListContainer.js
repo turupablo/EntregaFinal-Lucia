@@ -16,7 +16,7 @@ const ItemListContainer = () => {
     useEffect(() => {
         toast.info("Cargando producto...")
         setLoad(false)
-        const colleccionProductos = collection(db, "productos");
+        const colleccionProductos = collection(db, "items");
         let filtro = query(colleccionProductos);
         if (categoria) {
             filtro = query(colleccionProductos,where("categoria","==",categoria));
@@ -35,7 +35,7 @@ const ItemListContainer = () => {
 
 
              .catch((error) => {
-                   console.log(error)
+                   toast.error("No se pudieron cargar los productos")
             })
 
     }, [categoria])

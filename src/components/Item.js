@@ -3,6 +3,8 @@ import { Link } from "react-router-dom"
 import cart from '../assets/cart.svg'
 import { useCarrito } from './CarritoProvider'
 import ItemCount from './ItemCount';
+import Rate from './Rate'
+import { Rating } from 'react-simple-star-rating'
 
 
 
@@ -17,6 +19,7 @@ const Item = ({ producto }) => {
             <div className="pt-5 pb-5">
                 <div className="card shadow bg-body rounded text-center carta-contenedor ">
                     <h6 className="product-card__title">{producto.titulo}</h6>
+                    <Rating allowHover={false} size={15} allowFraction={true} readonly={true} initialValue={producto.rating.valoracion}/>
                     <div className="imagen-conedor">
                         <img className="product-card__image img-fluid border-secondary imagen-tarjeta" src={`${producto.imagen}`} alt={producto.titulo} />
                     </div>

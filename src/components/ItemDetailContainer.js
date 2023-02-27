@@ -17,7 +17,7 @@ const ItemDetailContainer = () => {
 
 
 
-       const productosCollection = collection(db, "productos")
+       const productosCollection = collection(db, "items")
        const referencia = doc(productosCollection, id)
        const pedido = getDoc(referencia)
 

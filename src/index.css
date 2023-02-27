@@ -56,7 +56,7 @@ code {
 }
 
 .imagen-detail {
-  width: 60%;
+  width: 20%;
 }
 
 .stock-texto {
@@ -79,4 +79,12 @@ code {
 
 .boton-count:hover {
   opacity: 0.75;
+}
+
+.botones-form {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
 }

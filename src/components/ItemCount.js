@@ -25,7 +25,7 @@ const ItemCount = ({stock , onAdd }) => {
 
 
   return (
-    <div>
+    <div className="">
       <div className="row">
         <button className="col p-1 boton-count bg-secondary" onClick={handleRestar}>-</button>
         <p className="col p-1">{contador}</p>
