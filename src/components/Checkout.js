@@ -13,6 +13,9 @@ const Checkout = () => {
     if(paso > 0){
       setPaso(paso - 1)
     }
+    if (paso === 0){
+      window.history.back()
+    }
   }
 
   const handleSiguiente = () => {
@@ -45,7 +48,7 @@ const Checkout = () => {
 
 
 
-          <div className=' w-25 botones-form'>
+          <div className=' w-25 botones-form m-auto'>
             <button className="btn btn-secondary col border " onClick={handleAtras}>Atras</button>
             <button className="btn btn-secondary col border " onClick={handleSiguiente}>Siguiente</button>
           </div>

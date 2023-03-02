@@ -1,6 +1,5 @@
 import {React} from "react"
 import { Link } from "react-router-dom"
-import cart from '../assets/cart.svg'
 import { useCarrito } from './CarritoProvider'
 import ItemCount from './ItemCount';
 import Rate from './Rate'

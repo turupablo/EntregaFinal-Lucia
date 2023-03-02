@@ -16,18 +16,28 @@ const CarritoProvider = ({ children }) => {
     const [totalPrecio, setTotalPrecio] = useState(0)
 
 
-    const agregarProducto = (producto, nuevaCantidad) => {
-        if (estaEnCarrito(producto.id)) {
+    const agregarProducto = (productoCar, nuevaCantidad) => {
+        const carritoPrecio = productoCar.precio
+
+        if (estaEnCarrito(productoCar.id)) {
             setCarrito(carrito.map(prod => {
-                return prod.id === producto.id ? {...prod, cantidad: prod.cantidad + nuevaCantidad} : prod
+                return prod.id === productoCar.id ? {...prod, cantidad: prod.cantidad + nuevaCantidad} : prod
             }))
         } else {
-            setCarrito([...carrito, {...producto, nuevaCantidad}])
+            setCarrito([...carrito, {...productoCar, cantidad: nuevaCantidad}])
         }
-        console.log(carrito)
+        setTotalPrecio(totalPrecio + (carritoPrecio * nuevaCantidad))
+        setTotalProductos(totalProductos + nuevaCantidad)
+
     }
 
-    const eliminarProducto = (id) => setCarrito(carrito.filter(producto => producto.id !== id))
+    const eliminarProducto = (id) => {
+        const carritoCantidad = carrito.find(producto => producto.id === id).cantidad
+        const carritoPrecio = carrito.find(producto => producto.id === id).precio
+        setTotalProductos(totalProductos - carritoCantidad)
+        setTotalPrecio(totalPrecio - (carritoCantidad*carritoPrecio))
+        setCarrito(carrito.filter(producto => producto.id !== id))
+    }
 
     //const modifcarCantidad = () => {}
 
