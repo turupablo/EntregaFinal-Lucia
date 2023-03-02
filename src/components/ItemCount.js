@@ -31,7 +31,7 @@ const ItemCount = ({stock , onAdd }) => {
         <p className="col p-1">{contador}</p>
         <button className="col p-1 boton-count bg-secondary" onClick={handleSumar}>+</button>
       </div>
-      <button className="btn btn-secondary mt-1"><img src={cart} width="20" height="20" className="d-inline-block align-top" alt=""/> Agregar</button>
+      <button className="btn btn-secondary mt-1"><img src={cart} width="20" height="20" className="d-inline-block align-top" onClick={handleConfirmar} alt=""/> Agregar</button>
     </div>
   )
 }

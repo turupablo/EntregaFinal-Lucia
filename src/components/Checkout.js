@@ -1,6 +1,9 @@
 import React from 'react'
 import { Stepper } from 'react-form-stepper';
 import { useState } from "react"
+import CarritoForm from './Carrito/CarritoForm';
+import CarritoList from './Carrito/CarritoList';
+import CarritoRevision from './Carrito/CarritoRevision';
 
 
 const Checkout = () => {
@@ -36,7 +39,9 @@ const Checkout = () => {
             }}
           />
 
-
+            {paso === 0 && <CarritoList />}
+            {paso === 1 && <CarritoForm/>}
+            {paso === 2 && <CarritoRevision />}
 
 
 

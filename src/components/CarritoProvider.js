@@ -13,18 +13,18 @@ const CarritoProvider = ({ children }) => {
 
     const [carrito, setCarrito] = useState([])
     const [totalProductos, setTotalProductos] = useState(0)
+    const [totalPrecio, setTotalPrecio] = useState(0)
 
 
-    const agregarProducto = (producto, cantidad) => {
-       
-        //const copia = []
-        //carrito.forEach(p=>copia.push(p))
-        
-       /*  const copia = [ ...arr ]
-        copia.push(producto) */
-        //setCarrito(copia)
-
-        //setCarrito()
+    const agregarProducto = (producto, nuevaCantidad) => {
+        if (estaEnCarrito(producto.id)) {
+            setCarrito(carrito.map(prod => {
+                return prod.id === producto.id ? {...prod, cantidad: prod.cantidad + nuevaCantidad} : prod
+            }))
+        } else {
+            setCarrito([...carrito, {...producto, nuevaCantidad}])
+        }
+        console.log(carrito)
     }
 
     const eliminarProducto = (id) => setCarrito(carrito.filter(producto => producto.id !== id))
@@ -50,7 +50,8 @@ const CarritoProvider = ({ children }) => {
         estaEnCarrito,
         vaciarCarrito,
         eliminarProducto,
-        agregarProducto
+        agregarProducto,
+        totalPrecio
     }
 
     return (
