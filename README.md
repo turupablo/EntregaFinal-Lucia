@@ -1,3 +1,17 @@
+# El proyecto se concentró en el ecommerse de la tienda oficial de Velez Sarsfield. Se optó por un estilo minimalista pero con la información necesaria a disposición por la amplia diversidad de edad que consumen los productos.
+
+#Se instalaron las siguientes librerias:
+
+react-form-stepper: Simplifica los pasos para el checkout dejandolo de una manera minimalista. Además nos permite utilizarlo para casos de uso futuro como el alta de productos nuevos desde el perfil Admin
+
+react-router-dom: Simplifica la navegabilidad en el sitio, permitiendo poder hacerlo por url
+
+react-simple-star-rating: Simplifica la visual del sistema de Ranking. Además permite modificación con interaccion del usuario que será implementado en el futuro
+
+react-toastify: Manejo de notificaciones de manera eficiente y visual. Tiene un amplio repertorio de funciones que nos dejan notificaciones a medida. 
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

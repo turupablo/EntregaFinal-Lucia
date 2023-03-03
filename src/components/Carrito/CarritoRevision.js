@@ -1,21 +1,18 @@
 import React from 'react'
-import { useCarrito, paso , orden, setBotonElim} from '../CarritoProvider'
+import { useCarrito , datosOrden, setBotonElim} from '../CarritoProvider'
 import { Link } from "react-router-dom"
 import CarritoList from './CarritoList'
 
 const CarritoRevision = () => {
-  const { orden, setBotonElim } = useCarrito();
+  const { datosOrden, setBotonElim } = useCarrito();
   setBotonElim(false)
 
   return (
-    <div>
-            <h1>Orden: {orden.id}</h1>
-            <p>Nombre: {orden.nombre}</p>
-            <p>Apellido: {orden.apellido}</p>
-            <p>Fecha: {orden.fecha}</p>
-            
-      
-            <Link to={"/"}> <button className="btn btn-secondary col border">Volver</button> </Link>
+    <div className='m-auto'>
+          <h1 className='text-center'>Orden: {datosOrden.idOrden}</h1>
+          <p className='text-center'>Nombre y Apellido: {datosOrden.nombre} {datosOrden.apellido}</p>
+          <p className='text-center'>E-Mail: {datosOrden.email}</p>
+          <Link to={"/"}> <button className="btn btn-secondary col border">Volver</button> </Link>
     </div>
   )
 }

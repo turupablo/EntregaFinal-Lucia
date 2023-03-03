@@ -64,6 +64,8 @@ const CarritoProvider = ({ children }) => {
 
     const vaciarCarrito = () => {
         setCarrito([])
+        setTotalProductos(0)
+        setTotalPrecio(0)
     }
 
     const estaEnCarrito = (id) => {
@@ -86,7 +88,8 @@ const CarritoProvider = ({ children }) => {
         botonElim,
         setBotonElim,
         datosOrden,
-        setDatosOrden
+        setDatosOrden,
+        setPaso
     }
 
     return (
