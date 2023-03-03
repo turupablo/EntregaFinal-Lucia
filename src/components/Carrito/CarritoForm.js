@@ -7,27 +7,56 @@ import { collection, serverTimestamp, addDoc } from 'firebase/firestore'
 
 
 
+
 const CarritoForm = () => {
   const {handleAtras, carrito, setDatosOrden, datosOrden, setPaso, paso} = useCarrito()
-  const [error, setError] = React.useState(null);
+  const [error, setError] = useState(null);
+  const [avance, setAvance] = useState(paso)
 
 
-  function handleSubmit(event) {
+ /* async function handleSubmit(event) {
     event.preventDefault();
     const mergeOrden ={...datosOrden, ...carrito, fecha: serverTimestamp()}
     setDatosOrden(mergeOrden)
-    console.log(datosOrden)
-    const ordenCollection = collection(db, "orders")
-    const pedido = addDoc(ordenCollection,datosOrden)
+    const docRef = await addDoc(collection(db, "orders"), datosOrden);
+    if (docRef !== null) {
+      toast.success("Compra realizada. Numero de Orden " + docRef.id)
+    } else {
+      toast.error("Ocurrio un error en la compra. Por favor reintentar")
+    }*/
+    function handleSubmit(event) {
+
+      event.preventDefault();
+      const mergeOrden ={...datosOrden, ...carrito, fecha: serverTimestamp()}
+      setDatosOrden(mergeOrden)
+      console.log(datosOrden)
+      const docRef = addDoc(collection(db, "orders"), datosOrden);
+      docRef
+      .then((res) => {
+            setPaso(paso + 1)
+            console.log(res.id)
+            console.log(res)
+
+      })
+      .catch((error) => {
+        toast.error("La compra no pudo realizarse. Vuelva a intentar" + error.code)
+      })
+
+  /* Con este codigo el adddoc volvia antes de los resultados y caia por catch pero se cargaba en firestore
+      const ordenCollection = collection(db, "orders")
+    const docRef = addDoc(ordenCollection , datosOrden)
+  const pedido = addDoc(ordenCollection , datosOrden)
 
     pedido
     .then((resultado)=>{
       console.log(resultado)
       setPaso(paso + 1)
     })
-    .catch((error)=> {
+    .catch(()=> {
       toast.error("La compra no pudo realizarse. Vuelva a intentar")
-    })
+    })*/
+
+
   }
 
   function handleChange(event) {
