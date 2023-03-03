@@ -9,8 +9,11 @@
     "firebase": "^9.17.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-form-stepper": "^2.0.3",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
+    "react-simple-star-rating": "^5.1.7",
+    "react-toastify": "^9.1.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

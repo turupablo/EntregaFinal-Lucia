@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from "react"
+import { useState ,useEffect} from "react"
 import { useCarrito, paso, orden, carrito, setPaso} from '../CarritoProvider'
 import { toast } from "react-toastify"
 import {db} from '../../firebase'
@@ -17,7 +17,6 @@ const CarritoForm = () => {
       event.preventDefault();
       const mergeOrden ={...datosOrden, ...carrito, fecha: serverTimestamp()}
       setDatosOrden(mergeOrden)
-      console.log(datosOrden)
       const docRef = addDoc(collection(db, "orders"), datosOrden);
       docRef
       .then((res) => {
@@ -26,6 +25,13 @@ const CarritoForm = () => {
       .catch((error) => {
         toast.error("La compra no pudo realizarse. Vuelva a intentar" + error.code)
       })
+  }
+
+  const handleSubmit2 = () => {
+    console.log("Entro")
+    if(avance > paso){
+      setPaso(avance)
+    }
   }
 
   function handleChange(event) {
@@ -42,7 +48,7 @@ const CarritoForm = () => {
   return (
     <div>
 
-      <form onSubmit={handleSubmit} className='form-container'>
+      <form onSubmit={handleSubmit2} className='form-container'>
         <div>
           <p>Nombre y Apellido</p>
         </div>

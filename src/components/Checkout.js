@@ -11,7 +11,7 @@ const Checkout = () => {
   return (
     <div>
           <Stepper
-            steps={[{ label: 'Revision' },  { label: 'Datos Personales y Confirmacion' }, { label: 'Orden' }]}
+            steps={[{ label: 'Revision' },  { label: 'Datos Personales y Confirmacion' }, { label: 'Detalle Orden' }]}
             activeStep={paso}
             styleConfig={{
               activeBgColor: '#17a2b8',
