@@ -14,6 +14,7 @@ const CarritoProvider = ({ children }) => {
     const [totalPrecio, setTotalPrecio] = useState(0)
     const [botonElim,setBotonElim] = useState(false)
     const [paso,setPaso] = useState(0)
+    const [datosOrden, setDatosOrden] = useState({});
 
     const [orden , setOrden] = useState({
         nombre: "",
@@ -83,7 +84,9 @@ const CarritoProvider = ({ children }) => {
         handleAtras,
         handleSiguiente,
         botonElim,
-        setBotonElim
+        setBotonElim,
+        datosOrden,
+        setDatosOrden
     }
 
     return (
