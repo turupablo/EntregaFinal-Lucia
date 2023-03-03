@@ -1,9 +1,10 @@
 import React from 'react';
-import { useCarrito } from '../CarritoProvider';
+import { useCarrito ,botonElim} from '../CarritoProvider';
 
 
 const ItemCarrrito = ({ producto }) => {
-    const { eliminarProducto } = useCarrito();
+    const { eliminarProducto ,  botonElim } = useCarrito();
+
 
     return (
         <div className='carrito-contenedor rounded m-auto p-1'>
@@ -18,7 +19,8 @@ const ItemCarrrito = ({ producto }) => {
                 </div>
                 <p>Precio: ${producto.precio}</p>
                 <p>Subtotal: ${producto.cantidad * producto.precio}</p>
-                <button className='btn btn-secondary border' onClick={() => eliminarProducto(producto.id)}>Eliminar</button>
+                {botonElim ? <button className='btn btn-secondary border' onClick={() => eliminarProducto(producto.id)}>Eliminar</button> : <div></div>}
+                
             </div>
         </div>
     )

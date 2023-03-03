@@ -99,3 +99,11 @@ code {
 .carrito-contenedor-imagen{
   height: 5rem;
 }
+
+.form-container {
+  border: 5px solid #DBDBDB;
+  border-radius: 40px 40px 40px 40px;
+  width: 50rem;
+  margin: auto;
+  padding: 1rem;
+}

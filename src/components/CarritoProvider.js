@@ -3,19 +3,41 @@ import { createContext, useContext, useState  } from 'react'
 const contexto = createContext()
 const Provider = contexto.Provider
 
-
 export const useCarrito = () => {
     const valorDelContexto = useContext(contexto)
     return valorDelContexto
 }
 
 const CarritoProvider = ({ children }) => {
-
     const [carrito, setCarrito] = useState([])
     const [totalProductos, setTotalProductos] = useState(0)
     const [totalPrecio, setTotalPrecio] = useState(0)
+    const [botonElim,setBotonElim] = useState(false)
+    const [paso,setPaso] = useState(0)
 
+    const [orden , setOrden] = useState({
+        nombre: "",
+        apellido: "",
+        email: "",
+        telefono: "",
+        fecha: ""
+    })
 
+    const handleAtras = () => {
+      if(paso > 0){
+        setPaso(paso - 1)
+      }
+      if (paso === 0){
+        window.history.back()
+      }
+    }
+  
+    const handleSiguiente = () => {
+      if(paso < 2){
+        setPaso(paso + 1)
+      }
+    }
+  
     const agregarProducto = (productoCar, nuevaCantidad) => {
         const carritoPrecio = productoCar.precio
 
@@ -39,8 +61,6 @@ const CarritoProvider = ({ children }) => {
         setCarrito(carrito.filter(producto => producto.id !== id))
     }
 
-    //const modifcarCantidad = () => {}
-
     const vaciarCarrito = () => {
         setCarrito([])
     }
@@ -48,9 +68,6 @@ const CarritoProvider = ({ children }) => {
     const estaEnCarrito = (id) => {
         return carrito.find(producto => producto.id === id) ? true : false
     }
-
- 
-
 
     const valorDelContexto = {
         carrito,
@@ -61,7 +78,12 @@ const CarritoProvider = ({ children }) => {
         vaciarCarrito,
         eliminarProducto,
         agregarProducto,
-        totalPrecio
+        totalPrecio,
+        paso,
+        handleAtras,
+        handleSiguiente,
+        botonElim,
+        setBotonElim
     }
 
     return (

@@ -1,35 +1,17 @@
 import React from 'react'
 import { Stepper } from 'react-form-stepper';
-import { useState } from "react"
 import CarritoForm from './Carrito/CarritoForm';
 import CarritoList from './Carrito/CarritoList';
 import CarritoRevision from './Carrito/CarritoRevision';
-
+import { useCarrito , paso} from './CarritoProvider';
 
 const Checkout = () => {
-  const [paso,setPaso] = useState(0)
-
-  const handleAtras = () => {
-    if(paso > 0){
-      setPaso(paso - 1)
-    }
-    if (paso === 0){
-      window.history.back()
-    }
-  }
-
-  const handleSiguiente = () => {
-    if(paso < 2){
-      setPaso(paso + 1)
-    }
-  }
-
+  const {paso} = useCarrito();
 
   return (
-    
     <div>
           <Stepper
-            steps={[{ label: 'Revision' },  { label: 'Datos Personales' }, { label: 'Finalizar' }]}
+            steps={[{ label: 'Revision' },  { label: 'Datos Personales y Confirmacion' }, { label: 'Orden' }]}
             activeStep={paso}
             styleConfig={{
               activeBgColor: '#17a2b8',
@@ -41,28 +23,9 @@ const Checkout = () => {
               size: '3em'
             }}
           />
-
-            {paso === 0 && <CarritoList />}
-            {paso === 1 && <CarritoForm/>}
-            {paso === 2 && <CarritoRevision />}
-
-
-
-          <div className=' w-25 botones-form m-auto'>
-            <button className="btn btn-secondary col border " onClick={handleAtras}>Atras</button>
-            <button className="btn btn-secondary col border " onClick={handleSiguiente}>Siguiente</button>
-          </div>
-
-
-          
-
-
-
-
-
-
-
-
+            {paso === 0 && <CarritoList/>}
+            {paso === 1 && <CarritoForm />}
+            {paso === 2 && <CarritoRevision/>}
     </div>
   )
 }

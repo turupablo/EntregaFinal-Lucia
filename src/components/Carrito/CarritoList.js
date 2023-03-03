@@ -1,11 +1,12 @@
 import React from 'react'
-import { useCarrito } from '../CarritoProvider'
+import { useCarrito, paso, handleAtras, handleSiguiente, setBotonElim} from '../CarritoProvider'
 import ItemCarrrito from './ItemCarrito'
 
 
-const CarritoList = () => {
-  const { carrito , totalPrecio} = useCarrito();
 
+const CarritoList = () => {
+  const { carrito , totalPrecio, handleAtras, handleSiguiente, setBotonElim} = useCarrito();
+  setBotonElim(true)
 
   return (
 
@@ -13,7 +14,11 @@ const CarritoList = () => {
 			{carrito.map((producto) => (
 				<ItemCarrrito key={producto.id} producto={producto} />
 			))}
-      <p className='text-center'>Total: {totalPrecio}</p>
+      <p className='text-center'>Total: ${totalPrecio}</p>
+	    <div className=' w-25 botones-form m-auto'>
+          <button className="btn btn-secondary col border " onClick={handleAtras}>Atras</button>
+          <button className="btn btn-secondary col border " onClick={handleSiguiente}>Siguiente</button>
+      </div>
 		</>
 
   )
