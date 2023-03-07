@@ -4,18 +4,24 @@ import { collection, getDocs, query, where  } from "firebase/firestore"
 import { db } from "../firebase"
 import ItemList from "./ItemList"
 import { toast } from "react-toastify"
+import { setPaso , paso, useCarrito} from './CarritoProvider';
 
 const ItemListContainer = () => {
 
     const [load, setLoad] = useState(false)
     const [productos,setProductos] = useState([])
-
+    const {paso ,setPaso} = useCarrito();
     const {categoria} = useParams()
+
 
 
     useEffect(() => {
         toast.info("Cargando producto...")
         setLoad(false)
+        setLoad(false)
+        if ( paso === 2 ) {
+            setPaso(0)
+        }
         const colleccionProductos = collection(db, "items");
         let filtro = query(colleccionProductos);
         if (categoria) {

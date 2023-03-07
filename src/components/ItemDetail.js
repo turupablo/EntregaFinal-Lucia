@@ -1,10 +1,17 @@
 import React from 'react'
-
 import Rate from './Rate'
+import { useCarrito } from './CarritoProvider'
+import ItemCount from './ItemCount';
 
 
   const ItemDetail = ({ productos }) => {
   
+
+  const {agregarProducto} = useCarrito()
+    const onAdd = (cantidad) => {
+        agregarProducto(productos,cantidad)
+    }
+
   
   const { titulo, precio, categoria, descripcion, imagen , rating, stock} = productos
   const handleAtras = () => {
@@ -19,7 +26,8 @@ import Rate from './Rate'
       <Rate valoracion={rating.valoracion} contador={rating.contador}></Rate>
       <p className='text-secondary precio'>${precio}</p>
       <p className='stock-texto'>Stock: {stock}</p>
-      <button className='btn btn-secondary ' onClick={handleAtras}>Atras</button>
+      <ItemCount stock={productos.stock} onAdd={onAdd} />
+      <button className='btn btn-secondary m-1' onClick={handleAtras}>Atras</button>
     </div>
   )
 }

@@ -4,17 +4,21 @@ import { collection, getDoc, doc } from "firebase/firestore"
 import { db } from "../firebase"
 import ItemDetail from "./ItemDetail"
 import { toast } from "react-toastify"
+import { setPaso , paso, useCarrito} from './CarritoProvider';
 
 const ItemDetailContainer = () => {
 
     const [load, setLoad] = useState(false)
     const [producto,setProducto] = useState({})
     const { id } = useParams()
+    const {paso ,setPaso} = useCarrito();
 
     useEffect(() => {
         toast.info("Cargando producto...")
         setLoad(false)
-
+        if ( paso === 2 ) {
+            setPaso(0)
+        }
 
 
        const productosCollection = collection(db, "items")

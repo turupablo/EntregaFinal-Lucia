@@ -66,6 +66,7 @@ const CarritoProvider = ({ children }) => {
         setCarrito([])
         setTotalProductos(0)
         setTotalPrecio(0)
+
     }
 
     const estaEnCarrito = (id) => {

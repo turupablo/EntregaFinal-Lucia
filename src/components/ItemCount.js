@@ -27,9 +27,9 @@ const ItemCount = ({stock , onAdd }) => {
   return (
     <div className="">
       <div className="row">
-        <button className="col p-1 boton-count bg-secondary" onClick={handleRestar}>-</button>
-        <p className="col p-1">{contador}</p>
-        <button className="col p-1 boton-count bg-secondary" onClick={handleSumar}>+</button>
+        <button className="col-1 p-1 boton-count bg-secondary" onClick={handleRestar}>-</button>
+        <p className="col-1 p-1">{contador}</p>
+        <button className="col-1 p-1 boton-count bg-secondary" onClick={handleSumar}>+</button>
       </div>
       <button className="btn btn-secondary mt-1" onClick={handleConfirmar}><img src={cart} width="20" height="20" className="d-inline-block align-top" alt=""/> Agregar</button>
     </div>

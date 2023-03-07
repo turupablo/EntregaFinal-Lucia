@@ -12,7 +12,10 @@ const CarritoRevision = () => {
           <h1 className='text-center'>Orden: {datosOrden.idOrden}</h1>
           <p className='text-center'>Nombre y Apellido: {datosOrden.nombre} {datosOrden.apellido}</p>
           <p className='text-center'>E-Mail: {datosOrden.email}</p>
-          <Link to={"/"}> <button className="btn btn-secondary col border">Volver</button> </Link>
+          <div className="d-flex justify-content-between align-items-center">
+           <Link to={"/"}> <button className="btn btn-secondary col border">Volver</button> </Link>
+          </div>
+
     </div>
   )
 }
