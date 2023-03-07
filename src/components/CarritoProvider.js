@@ -1,4 +1,4 @@
-import { createContext, useContext, useState  } from 'react'
+import { createContext, useContext, useState , useEffect } from 'react'
 
 const contexto = createContext()
 const Provider = contexto.Provider
@@ -15,6 +15,31 @@ const CarritoProvider = ({ children }) => {
     const [botonElim,setBotonElim] = useState(false)
     const [paso,setPaso] = useState(0)
     const [datosOrden, setDatosOrden] = useState({});
+
+
+    const carritoRecuperado = JSON.parse(localStorage.getItem("carrito"));
+    const totalProductosRecuperado = JSON.parse(localStorage.getItem("totalProductos"));
+    const totalPrecioRecuperado = JSON.parse(localStorage.getItem("totalPrecio"));
+  
+    useEffect(() => {
+      if (carritoRecuperado) {
+        setCarrito(carritoRecuperado);
+      }
+      if (totalProductosRecuperado) {
+        setTotalProductos(totalProductosRecuperado);
+      }
+      if (totalPrecioRecuperado) {
+        setTotalPrecio(totalPrecioRecuperado);
+      }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        localStorage.setItem("totalProductos", JSON.stringify(totalProductos));
+        localStorage.setItem("totalPrecio", JSON.stringify(totalPrecio));
+      }, [carrito, totalProductos, totalPrecio]);
+
+
 
     const [orden , setOrden] = useState({
         nombre: "",
