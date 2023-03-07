@@ -12,22 +12,30 @@ const CarritoForm = () => {
   const {handleAtras, carrito, setDatosOrden, datosOrden, setPaso, paso, vaciarCarrito} = useCarrito()
   const [error, setError] = useState(null);
   const [avance, setAvance] = useState(paso)
+  const [habilitadoNombre, setHabilitadoNombre] = useState(false)
+  const [habilitadoEmail, setHabilitadoEmail] = useState(false)
+  const [habilitadoReEmail, setHabilitadoReEmail] = useState(false)
+
 
     function handleSubmit(event) {
       event.preventDefault();
-      const mergeOrden ={...datosOrden, ...carrito, fecha: serverTimestamp()}
-      setDatosOrden(mergeOrden)
-      const docRef = addDoc(collection(db, "orders"), datosOrden);
-      docRef
-      .then((res) => {
-            toast.success("Compra realizada. Orden: " + res.id)
-            setPaso(paso + 1)
-            setDatosOrden({...mergeOrden, idOrden: res.id})
-            vaciarCarrito()
-      })
-      .catch((error) => {
-        toast.error("La compra no pudo realizarse. Vuelva a intentar" + error.code)
-      })
+      if ( habilitadoEmail && habilitadoNombre && habilitadoReEmail ) {
+        const mergeOrden ={...datosOrden, ...carrito, fecha: serverTimestamp()}
+        setDatosOrden(mergeOrden)
+        const docRef = addDoc(collection(db, "orders"), datosOrden);
+        docRef
+        .then((res) => {
+              toast.success("Compra realizada. Orden: " + res.id)
+              setPaso(paso + 1)
+              setDatosOrden({...mergeOrden, idOrden: res.id})
+              vaciarCarrito()
+        })
+        .catch((error) => {
+          toast.error("La compra no pudo realizarse. Vuelva a intentar" + error.code)
+        })
+      } else {
+        setError("Complete los datos");
+      }
   }
 
 
@@ -35,20 +43,55 @@ const CarritoForm = () => {
     const value = event.target.value;
     const name = event.target.name
     if (value.includes("_")) {
-      setError("You cannot use an underscore");
+      setError("Sin caracteres especiales");
     } else {
       setError(null);
       setDatosOrden({...datosOrden, [name]: value});
     }
+    if (value !== '') {
+      setHabilitadoNombre(true)
+    } else {
+      setHabilitadoNombre(false)
+    }
   }
+  function handleChangeEmail(event) {
+    const value = event.target.value;
+    const name = event.target.name
+    if (value.includes("@")) {
+      setError(null);
+      setDatosOrden({...datosOrden, [name]: value});
+      if (value !== '') {
+        setHabilitadoEmail(true)
+      } else {
+        setHabilitadoEmail(false)
+      }
+    } else {
+      setError("No tiene formato de email");
+      setDatosOrden({...datosOrden, [name]: value});
+    }
+  }
+  function handleChangeReEmail(event) {
+    const value = event.target.value;
+    const name = event.target.name
+    if (value.match(datosOrden.email)) {
+      setError(null);
+      setDatosOrden({...datosOrden, [name]: value});
+      if (value !== '') {
+        setHabilitadoReEmail(true)
+      } else {
+        setHabilitadoReEmail(false)
+      }
+    } else {
+      setError("No coinciden los eMails");
+      setDatosOrden({...datosOrden, [name]: value});
+    }
+  }
+
 
   return (
     <div>
 
       <form onSubmit={handleSubmit} className='form-container'>
-        <div>
-          <p>Nombre y Apellido</p>
-        </div>
         <label className='d-flex justify-content-center p-4'>
           Nombre y Apellido
           <input
@@ -80,14 +123,14 @@ const CarritoForm = () => {
           <input
             id="email"
             name="email"
-            onChange={handleChange}
+            onChange={handleChangeEmail}
             value={datosOrden.email}
             placeholder="email"
           />
             <input
             id="reemail"
             name="reemail"
-            onChange={handleChange}
+            onChange={handleChangeReEmail}
             value={datosOrden.reemail}
             placeholder="Confirmar email"
           />

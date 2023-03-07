@@ -35,7 +35,6 @@ const ItemDetailContainer = () => {
                 setLoad(true)
             })
             .catch((error) => {
-                console.log(error)
                 toast.dismiss()
                 toast.error("Hubo un error, vuelva a intentarlo!")
             })
