@@ -4,7 +4,7 @@ import { collection, getDoc, doc } from "firebase/firestore"
 import { db } from "../firebase"
 import ItemDetail from "./ItemDetail"
 import { toast } from "react-toastify"
-import { setPaso , paso, useCarrito} from './CarritoProvider';
+import { useCarrito} from './CarritoProvider';
 
 const ItemDetailContainer = () => {
 
@@ -20,12 +20,10 @@ const ItemDetailContainer = () => {
             setPaso(0)
         }
 
-
        const productosCollection = collection(db, "items")
        const referencia = doc(productosCollection, id)
        const pedido = getDoc(referencia)
 
-   
         pedido
             .then((respuesta) => {
                 const producto = respuesta.data()

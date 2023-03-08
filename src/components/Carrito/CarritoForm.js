@@ -1,6 +1,6 @@
 import React from 'react'
-import { useState ,useEffect} from "react"
-import { useCarrito, paso, orden, carrito, setPaso, vaciarCarrito} from '../CarritoProvider'
+import { useState} from "react"
+import { useCarrito } from '../CarritoProvider'
 import { toast } from "react-toastify"
 import {db} from '../../firebase'
 import { collection, serverTimestamp, addDoc } from 'firebase/firestore'
@@ -11,7 +11,6 @@ import { collection, serverTimestamp, addDoc } from 'firebase/firestore'
 const CarritoForm = () => {
   const {handleAtras, carrito, setDatosOrden, datosOrden, setPaso, paso, vaciarCarrito} = useCarrito()
   const [error, setError] = useState(null);
-  const [avance, setAvance] = useState(paso)
   const [habilitadoNombre, setHabilitadoNombre] = useState(false)
   const [habilitadoEmail, setHabilitadoEmail] = useState(false)
   const [habilitadoReEmail, setHabilitadoReEmail] = useState(false)

@@ -40,15 +40,6 @@ const CarritoProvider = ({ children }) => {
       }, [carrito, totalProductos, totalPrecio]);
 
 
-
-    const [orden , setOrden] = useState({
-        nombre: "",
-        apellido: "",
-        email: "",
-        telefono: "",
-        fecha: ""
-    })
-
     const handleAtras = () => {
       if(paso > 0){
         setPaso(paso - 1)
